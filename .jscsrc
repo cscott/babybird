@@ -14,7 +14,8 @@
   ],
 
   "excludeFiles": [
-    "node_modules/**",
-    "clean/**"
+    "benchmark/**",
+    "clean/**",
+    "node_modules/**"
   ]
 }
