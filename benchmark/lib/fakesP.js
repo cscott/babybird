@@ -7,8 +7,8 @@ else if(global.useThenPromise) {
     var lifter = require("promise").denodeify;
 }
 else if (global.useNative) {
-    try {
-        if (Promise.race.toString() !== 'function race() { [native code] }')
+  try {
+        if (!/^function race\(/.test(Promise.race.toString()))
             throw 0;
     } catch (e) {
         throw new Error("No ES6 promises available");

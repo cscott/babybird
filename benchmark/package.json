@@ -6,6 +6,8 @@
   "dependencies": {
     "async": "^1.5.0",
     "bluebird": "^3.0.6",
+    "core-js": "^1.2.6",
+    "es6-shim": "^0.33.13",
     "optimist": "^0.6.1",
     "promise": "^7.0.4",
     "text-table": "^0.2.0"
