@@ -2,7 +2,7 @@
 
 if (global.useBluebird)
     //Currently promisifies only Node style callbacks
-    var lifter = require('../../js/release/bluebird.js').promisify;
+    var lifter = require('bluebird').promisify;
 else if(global.useThenPromise) {
     var lifter = require("promise").denodeify;
 }
