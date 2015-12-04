@@ -6,6 +6,26 @@ if (global.useBluebird)
 else if(global.useThenPromise) {
     var lifter = require("promise").denodeify;
 }
+else if (global.useBabybird) {
+    var BBPromise = require('../../');
+    var lifter = function(nodefn) {
+        return function() {
+            var self = this;
+            var l = arguments.length;
+            var args = new Array(l + 1);
+            for (var i = 0; i < l; ++i) {
+                args[i] = arguments[i];
+            }
+            return new BBPromise(function(resolve, reject) {
+                args[l] = function(err, val) {
+                    if (err) reject(err);
+                    else resolve(val);
+                };
+                nodefn.apply(self, args);
+            });
+        };
+    };
+}
 else if (global.useNative) {
   try {
         if (!/^function race\(/.test(Promise.race.toString()))
