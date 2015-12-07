@@ -12,6 +12,7 @@
     "try",
     "catch"
   ],
+  "requireCamelCaseOrUpperCaseIdentifiers": { "ignoreProperties": true },
 
   "excludeFiles": [
     "benchmark/**",
