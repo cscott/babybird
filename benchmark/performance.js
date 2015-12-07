@@ -104,6 +104,9 @@ if (args.file) {
 
 
     var files = args._.filter(function(f) {
+        if (process.env.BABYBIRD_QUICK && !/bird/.test(path.basename(f))) {
+            return false;
+        }
         return !/^src-/.test(path.basename(f));
     });
 
@@ -117,15 +120,21 @@ if (args.file) {
             return parseFloat(r1.data.time) - parseFloat(r2.data.time)
         });
         console.log("");
+        var normTime = (res.filter(function(r) {
+            return path.basename(r.file) === 'promises-bluebird.js';
+        })[0] || {data:{}}).data.time;
         res = res.map(function(r) {
             var failText = 'OOM';
             if (r.data.timeout) failText = 'T/O';
             return [path.basename(r.file),
                 r.data.mem != null ? r.data.time: failText,
+                r.data.mem != null ?
+                    (normTime != null ?
+                     (r.data.time/normTime).toFixed(2) : '-') : failText,
                 r.data.mem != null ? r.data.mem.toFixed(2) : failText]
         });
 
-        res = [['file', 'time(ms)', 'memory(MB)']].concat(res)
+        res = [['file', 'time(ms)', 'slowdown', 'memory(MB)']].concat(res)
 
         console.log(table(res, {align: ['l', 'r', 'r']}));
         printPlatform();
