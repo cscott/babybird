@@ -6,33 +6,16 @@ if (global.useBluebird)
 else if(global.useThenPromise) {
     var lifter = require("promise").denodeify;
 }
-else if (global.useBabybird) {
-    var BBPromise = require('../../');
-    var lifter = function(nodefn) {
-        return function() {
-            var self = this;
-            var l = arguments.length;
-            var args = new Array(l + 1);
-            for (var i = 0; i < l; ++i) {
-                args[i] = arguments[i];
-            }
-            return new BBPromise(function(resolve, reject) {
-                args[l] = function(err, val) {
-                    if (err) reject(err);
-                    else resolve(val);
-                };
-                nodefn.apply(self, args);
-            });
-        };
-    };
-}
-else if (global.useNative) {
-  try {
-        if (!/^function race\(/.test(Promise.race.toString()))
-            throw 0;
-    } catch (e) {
-        throw new Error("No ES6 promises available");
+else if (global.useThisImpl || global.useNative) {
+    if (global.useNative) {
+        try {
+            if (!/^function race\(/.test(Promise.race.toString()))
+                throw 0;
+        } catch (e) {
+            throw new Error("No ES6 promises available");
+        }
     }
+    var ThisPromise = global.useThisImpl || global.Promise;
     var lifter = function(nodefn) {
         return function() {
             var self = this;
@@ -41,7 +24,7 @@ else if (global.useNative) {
             for (var i = 0; i < l; ++i) {
                 args[i] = arguments[i];
             }
-            return new Promise(function(resolve, reject) {
+            return new ThisPromise(function(resolve, reject) {
                 args[l] = function(err, val) {
                     if (err) reject(err);
                     else resolve(val);

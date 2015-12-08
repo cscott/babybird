@@ -1,4 +1,4 @@
-var Promise = require('../../');
+var Promise = require('prfun/wrap')(require('../../'));
 global.useThisImpl = Promise;
 require('../lib/fakesP');
 
@@ -7,12 +7,11 @@ module.exports = function upload(stream, idOrPath, tag, done) {
     var tx = db.begin();
     var blobIdP = blob.put(stream);
     var fileP = self.byUuidOrPath(idOrPath).get();
-    var version, fileId, file, blobId;
+    var version, fileId, file;
 
-    blobIdP.then(function(_blobId) {
-        blobId = _blobId;
-        return fileP;
-    }).then(function(fileV) {
+    Promise.all([blobIdP, fileP]).then(function(result) {
+        var blobId = result[0];
+        var fileV = result[1];
         file = fileV;
         var previousId = file ? file.version : null;
         version = {

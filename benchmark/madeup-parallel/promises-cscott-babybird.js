@@ -1,5 +1,5 @@
 var Promise = require('../../');
-global.useBabybird = true;
+global.useThisImpl = Promise;
 
 require('../lib/fakesP');
 
