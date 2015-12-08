@@ -1,4 +1,4 @@
-
+'use strict';
 
 if (global.useBluebird)
     //Currently promisifies only Node style callbacks

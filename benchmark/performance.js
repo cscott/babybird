@@ -121,7 +121,7 @@ if (args.file) {
         });
         console.log("");
         var normTime = (res.filter(function(r) {
-            return path.basename(r.file) === 'promises-bluebird.js';
+            return path.basename(r.file) === 'promises-bluebird-fair.js';
         })[0] || {data:{}}).data.time;
         res = res.map(function(r) {
             var failText = 'OOM';
