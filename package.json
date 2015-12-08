@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/cscott/babybird#readme",
   "dependencies": {
+    "asap": "^2.0.3",
     "is-arguments": "^1.0.2"
   },
   "devDependencies": {
