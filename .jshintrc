@@ -1,4 +1,16 @@
 {
         "predef": [ "describe", "specify", "it" ],
-        "node": true
+        "node": true,
+        "bitwise": true,
+        "curly": true,
+        "eqeqeq": true,
+        "freeze": true,
+        "laxbreak": true,
+        "loopfunc": true,
+        "noarg": true,
+        "node": true,
+        "nonew": true,
+        "strict": true,
+        "undef": true,
+        "unused": "vars"
 }
