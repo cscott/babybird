@@ -1,10 +1,11 @@
 'use strict';
 
+var lifter;
 if (global.useBluebird)
     //Currently promisifies only Node style callbacks
-    var lifter = require('bluebird').promisify;
+    lifter = require('bluebird').promisify;
 else if(global.useThenPromise) {
-    var lifter = require("promise").denodeify;
+    lifter = require("promise").denodeify;
 }
 else if (global.useThisImpl || global.useNative) {
     if (global.useNative) {
@@ -16,10 +17,24 @@ else if (global.useThisImpl || global.useNative) {
         }
     }
     var ThisPromise = global.useThisImpl || global.Promise;
-    var lifter = function(nodefn) {
-        return function() {
+    lifter = global.usePromisify ? ThisPromise.promisify.bind(ThisPromise) :
+      function(nodefn) {
+        return function(a, b) {
             var self = this;
             var l = arguments.length;
+            if (l <= 2) {
+                // Optimized lifter
+                return new ThisPromise(function(resolve, reject) {
+                    var cb = function(err, val) {
+                        if (err) reject(err); else resolve(val);
+                    };
+                    switch (l) {
+                    case 0: nodefn.call(self, cb); return;
+                    case 1: nodefn.call(self, a, cb); return;
+                    case 2: nodefn.call(self, a, b, cb); return;
+                    }
+                });
+            }
             var args = new Array(l + 1);
             for (var i = 0; i < l; ++i) {
                 args[i] = arguments[i];
@@ -32,7 +47,7 @@ else if (global.useThisImpl || global.useNative) {
                 nodefn.apply(self, args);
             });
         };
-    };
+      };
 }
 else {
     throw new Error("no lifter");

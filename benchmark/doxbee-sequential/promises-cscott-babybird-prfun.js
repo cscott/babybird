@@ -1,5 +1,6 @@
 var Promise = require('prfun/wrap')(require('../../'));
 global.useThisImpl = Promise;
+//global.usePromisify = true;
 require('../lib/fakesP');
 
 module.exports = function upload(stream, idOrPath, tag, done) {
