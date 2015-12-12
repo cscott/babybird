@@ -1,7 +1,7 @@
 {
   "name": "babybird",
   "version": "0.0.1",
-  "description": "A stripped down bluebird implementation of promises.",
+  "description": "Very fast standards-compliant ES2015 promises.",
   "main": "lib/promise.js",
   "scripts": {
     "jscs": "jscs .",
