@@ -1,6 +1,6 @@
 {
   "name": "babybird",
-  "version": "0.0.1",
+  "version": "0.0.1-git",
   "description": "Very fast standards-compliant ES2015 promises.",
   "main": "lib/promise.js",
   "scripts": {
