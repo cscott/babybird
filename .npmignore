@@ -1,0 +1,9 @@
+.jscsrc
+.jshintignore
+.jshintrc
+.travis.yml
+bench
+benchmark
+clean
+npm-debug.log
+test
