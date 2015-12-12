@@ -14,7 +14,7 @@ against the ES2015 spec (or the official `test262` test suite).
 The `babybird` library is a stripped-down "just ES2015" Promise
 implementation, which passes the Promises/A+ and `test262` test
 suites.  It is very competitive with the performance of [`bluebird`],
-without having to give us standards compliance.  On the doxbee
+without having to give up standards compliance.  On the `doxbee`
 benchmark running under node 5.1.0, `babybird` is 2.4 times faster
 than native Promises, 4 times faster than the Promise implementation
 in [`core-js`], and almost 9 times faster than the Promise
@@ -43,7 +43,7 @@ var Promise = require('babybird');
 
 The `babybird` library plays very nicely with [`prfun`], if you'd like
 a few bells and whistles with your library.  I recommend creating a
-new module, named (say) `promise.js`, with the contents:
+new module, named (say) `promise.js`, with these contents:
 ```javascript
 module.exports = require('prfun/wrap')(require('babybird'));
 ```
