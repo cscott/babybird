@@ -208,7 +208,7 @@ on the subclass it creates.)
 
 ## License
 
-Copyright (c) 2015 C. Scott Ananian
+Copyright (c) 2015-2016 C. Scott Ananian
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
