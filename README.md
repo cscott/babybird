@@ -196,11 +196,13 @@ believe is widely discussed.
 ### Subclass support
 The primary limitation of the `then0` and `PromiseCapability`
 optimizations is that they require the `Promise` subclass'
-constructor to be side-effect free, and not to do anything with
+constructor to be side-effect-free, and not to do anything with
 the provided `executor` function except pass it unmodified to
 its superclass constructor.  If you wish to use a `Promise`
 subclass constructor which does not adhere to these rules,
-then you should set `strictConstructors` to true in `promise.js`.
+then you should use `require('babybird/strict-constructors')`
+(or `require('babybird/strict')` if your `Promise` subclass
+is especially badly-behaved).  You can then turn on these
 You can then turn on these optimizations on a subclass-by-subclass
 basis by setting `PromiseSubclass.noSideEffects = true` where
 appropriate.  (The [`prfun`] library already sets `noSideEffects`
