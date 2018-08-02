@@ -1,5 +1,5 @@
 # babybird
-[![NPM][NPM1]][NPM2]
+[![NPM][NPM1]][NPM2] [![Promises/A+ 1.0 compliant][PAP1]][PAP2]
 
 [![Build Status][1]][2] [![dependency status][3]][4] [![dev dependency status][5]][6]
 
@@ -258,3 +258,6 @@ THE SOFTWARE.
 [4]: https://david-dm.org/cscott/babybird
 [5]: https://david-dm.org/cscott/babybird/dev-status.png
 [6]: https://david-dm.org/cscott/babybird#info=devDependencies
+
+[PAP1]: https://promisesaplus.com/assets/logo-small.png
+[PAP2]: https://promisesaplus.com/

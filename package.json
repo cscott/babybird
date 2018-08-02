@@ -17,7 +17,8 @@
     "url": "git+https://github.com/cscott/babybird.git"
   },
   "keywords": [
-    "promise"
+    "promise",
+    "promises-aplus"
   ],
   "author": "C. Scott Ananian",
   "license": "MIT",
