@@ -1,5 +1,11 @@
 language: node_js
 node_js:
-  - "node"
-  - "stable"
   - "0.10"
+  - "4"
+  - "6"
+  - "8"
+  - "10"
+  # From the nvm docs, "this installs the latest version of node".
+  - "node"
+
+sudo: false
